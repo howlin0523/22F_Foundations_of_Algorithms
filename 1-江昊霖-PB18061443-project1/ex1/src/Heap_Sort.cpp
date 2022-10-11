@@ -12,15 +12,18 @@ int main()
     {
         input(n, data);
 
-        cout << data.size() << endl;
-
         clock_t start, end;
         start = clock();
         mergeSort(data, 0, data.size() - 1);
         end = clock();
-        cout << "times: " << (double)(end - start) / CLOCKS_PER_SEC << endl;
+        cout << "n = 2^" << n << endl;
+        cout << "times: " << (double)(end - start) / CLOCKS_PER_SEC << "s" << endl;
 
         output('q', n, data);
+        // for (int i = 0; i < data.size(); i++)
+        // {
+        //     cout << data[i] << endl;
+        // }
         data.clear();
     }
     return 0;

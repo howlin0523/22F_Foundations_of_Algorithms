@@ -40,88 +40,68 @@ void countingSort(vector<int> &arr)
 
 void heapify(vector<int> &arr, int N, int i)
 {
-
     int largest = i;
 
-    // left = 2*i + 1
     int left = 2 * i + 1;
-
-    // right = 2*i + 2
     int right = 2 * i + 2;
 
     if (left < N && arr[left] > arr[largest])
-
         largest = left;
 
     if (right < N && arr[right] > arr[largest])
-
         largest = right;
 
     if (largest != i)
     {
-
         swap(&arr[i], &arr[largest]);
-
-        // Recursively heapify the affected
-        // sub-tree
         heapify(arr, N, largest);
     }
 }
 
-// Main function to do heap sort
-void heapSort(vector<int> arr, int N)
+void heapSort(vector<int> &arr, int N)
 {
-
-    // Build max heap
     for (int i = N / 2 - 1; i >= 0; i--)
-
         heapify(arr, N, i);
 
-    // Heap sort
     for (int i = N - 1; i >= 0; i--)
     {
-
         swap(&arr[0], &arr[i]);
-
-        // Heapify root element to get highest element at
-        // root again
         heapify(arr, i, 0);
     }
 }
 
 // merge sort
-void merge(vector<int> &Array, int front, int mid, int end)
+void merge(vector<int> &arr, int front, int mid, int end)
 {
 
-    vector<int> LeftSubArray(Array.begin() + front, Array.begin() + mid + 1);
-    vector<int> RightSubArray(Array.begin() + mid + 1, Array.begin() + end + 1);
+    vector<int> LeftSubArray(arr.begin() + front, arr.begin() + mid + 1);
+    vector<int> RightSubArray(arr.begin() + mid + 1, arr.begin() + end + 1);
     int idxLeft = 0, idxRight = 0;
     LeftSubArray.insert(LeftSubArray.end(), numeric_limits<int>::max());
     RightSubArray.insert(RightSubArray.end(), numeric_limits<int>::max());
-    // Pick min of LeftSubArray[idxLeft] and RightSubArray[idxRight], and put into Array[i]
     for (int i = front; i <= end; i++)
     {
         if (LeftSubArray[idxLeft] < RightSubArray[idxRight])
         {
-            Array[i] = LeftSubArray[idxLeft];
+            arr[i] = LeftSubArray[idxLeft];
             idxLeft++;
         }
         else
         {
-            Array[i] = RightSubArray[idxRight];
+            arr[i] = RightSubArray[idxRight];
             idxRight++;
         }
     }
 }
 
-void mergeSort(vector<int> &Array, int front, int end)
+void mergeSort(vector<int> &arr, int front, int end)
 {
     if (front >= end)
         return;
     int mid = (front + end) / 2;
-    mergeSort(Array, front, mid);
-    mergeSort(Array, mid + 1, end);
-    merge(Array, front, mid, end);
+    mergeSort(arr, front, mid);
+    mergeSort(arr, mid + 1, end);
+    merge(arr, front, mid, end);
 }
 
 // quick sort

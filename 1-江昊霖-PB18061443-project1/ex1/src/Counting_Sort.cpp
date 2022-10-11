@@ -16,9 +16,15 @@ int main()
         start = clock();
         countingSort(data);
         end = clock();
-        cout << "times: " << (double)(end - start) / CLOCKS_PER_SEC << endl;
+        cout << "n = 2^" << n << endl;
+        cout << "times: " << (double)(end - start) / CLOCKS_PER_SEC << "s" << endl;
 
         output('c', n, data);
+        // for (int i = 0; i < data.size(); i++)
+        // {
+        //     cout << data[i] << endl;
+        // }
+
         data.clear();
     }
     return 0;

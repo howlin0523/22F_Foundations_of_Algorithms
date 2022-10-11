@@ -61,7 +61,6 @@ void output(char c, int n, vector<int> &data)
         outfile << data[i] << endl;
     }
     outfile.close();
-    cout << "output successful" << endl;
 }
 
 void makeRandom()
